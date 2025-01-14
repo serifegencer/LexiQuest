@@ -76,6 +76,9 @@ h1 {
 .card:hover{
     transform: scale(0.8);
 }
+.card.flipped{
+    background-color: #f3f3f3;
+ }
 button {
     padding: 10px 20px;
     margin: 10px;
