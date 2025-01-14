@@ -9,3 +9,6 @@ In the main menu, you select the area you want to learn about from the categorie
 
 ## authors 
  *Şerife Gencer*
+
+## Live Demo
+You can view the live version of the project here:[Live Demo ](https://lexiquestgame.netlify.app/)
