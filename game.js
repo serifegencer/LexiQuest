@@ -167,3 +167,14 @@ const categories = {
     { english: "in love", turkish: "aşık" },
   ],
 };
+
+let selectedCategory = null;
+let level = 1;
+let flippedCards = [];
+let matchedCards = 0;
+let totalCards = 8;
+let maxLevel = 6;
+let totalPairs = 4;
+let totalCorrectMatches = 0;
+let wrongMatches = 0;
+let score = 0;
