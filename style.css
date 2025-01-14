@@ -1,1 +1,21 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: rgb(30, 63, 44);
+}
+
+.category-selection{
+    margin-top:50px ;
+    text-align: center;
+    padding: 50px;
+}
+
+.category-selection h1{
+    color: #f3f3f3;
+}
+.category-selection p {
+    color: #f3f3f3;
+}
+
 
