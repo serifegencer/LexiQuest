@@ -28,6 +28,26 @@
             <button onclick="startGameWithCategory('emotions')">Duygular</button>
         </div>
     </div>
-
+   <div class="game-container" style="display: none;">
+    <p  id="stats">
+        Toplam Oyun: 0 , Eşleşmeler: 0
+    </p>
+    <div class="level-info">
+        <p>Seviye: <span id="level">1</span></p>
+    </div>
+    <div class="cards-container" id="cards-container">
+     <!-- Cards will be created here
+ -->
+        </div>
+        <div class="controls">
+             <button id="next-level" onclick="nextLevel()">Sonraki Level</button>
+             <button id="restart-level" onclick="restartLevel()">Başa Dön</button>
+         <button id="back-to-category" onclick="goBackToCategory()">Ana Menü</button>
+        </div>
+         <div id="game-over" style="display:none;">
+        <p>Bölümü geçtiniz ! Yeni seviyeye geçebilirsiniz.</p>
+         </div>
+            </div>
+   </div>
 </body>
 </html>
