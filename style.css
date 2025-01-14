@@ -2,6 +2,8 @@ body{
     font-family: Arial, sans-serif;
     text-align: center;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     background-color: rgb(30, 63, 44);
 }
 
@@ -35,7 +37,7 @@ body{
 
 .game-container{
     width: 50%;
-    margin: 100px auto;
+    margin:100px auto;
     border: solid 3px rgb(130, 234, 139);
     background-color: rgb(130, 234, 139);
     border-radius: 8px;
@@ -59,7 +61,10 @@ h1 {
     display: grid;
     grid-template-columns: repeat(5,1fr); /* Default 5 column */
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    
+    padding:auto;
+    
 }
 
 .card{
@@ -106,6 +111,7 @@ label {
 @media(max-width:1024px){
     .game-container{
         width: 70%; /* Game-container width will decrease on smaller screens */
+        
     }
     .cards-container {
      grid-template-columns: repeat(4, 1fr); /* 4 columns on middle screens */
@@ -115,6 +121,7 @@ label {
      .game-container {
      width: 80%; /* Game-container will become even smaller on mobile devices
     */
+    
    } 
     .cards-container {
      grid-template-columns: repeat(3, 1fr); /* 3 columns on small screens */
