@@ -178,3 +178,229 @@ let totalPairs = 4;
 let totalCorrectMatches = 0;
 let wrongMatches = 0;
 let score = 0;
+
+function startGameWithCategory(category) {
+  selectedCategory = category;
+  document.querySelector(".category-selection").style.display = "none"; // Hide category selection
+  document.querySelector(".game-container").style.display = "block"; // Show playground
+  startGame();
+}
+
+function startGame() {
+  resetGame();
+  createCards();
+}
+
+// function resetGame() {
+//     flippedCards = [];
+//     matchedCards = 0;
+//     document.getElementById('level').textContent = level;
+//     document.getElementById('game-over').style.display = 'none';
+//     document.getElementById('next-level').style.display = 'none';
+//     totalPairs = level + 3;
+//     totalCards = totalPairs * 2;
+
+//     totalCorrectMatches = 0;
+//     wrongMatches = 0;
+//     score = 0;
+// }
+
+function createCards() {
+  const cardsContainer = document.getElementById("cards-container");
+  cardsContainer.innerHTML = "";
+
+  let shuffledWords = shuffle(
+    categories[selectedCategory].slice(0, totalPairs)
+  );
+
+  let allWords = [];
+  shuffledWords.forEach((pair) => {
+    allWords.push(pair.english, pair.turkish);
+  });
+
+  allWords = shuffle(allWords);
+
+  allWords.forEach((word) => {
+    const card = createCard(word);
+    cardsContainer.appendChild(card);
+  });
+}
+
+function createCard(word) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.dataset.word = word;
+  card.addEventListener("click", flipCard);
+  return card;
+}
+
+function flipCard() {
+  const card = this;
+  if (flippedCards.length < 2 && !card.classList.contains("flipped")) {
+    card.classList.add("flipped");
+    card.textContent = card.dataset.word;
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+      checkMatch();
+    }
+  }
+}
+
+function checkMatch() {
+  const [firstCard, secondCard] = flippedCards;
+
+  if (
+    categories[selectedCategory].some(
+      (pair) =>
+        pair.english === firstCard.dataset.word &&
+        pair.turkish === secondCard.dataset.word
+    ) ||
+    categories[selectedCategory].some(
+      (pair) =>
+        pair.turkish === firstCard.dataset.word &&
+        pair.english === secondCard.dataset.word
+    )
+  ) {
+    matchedCards++;
+    totalCorrectMatches++;
+    score += 10;
+    updateStats();
+
+    if (matchedCards === totalPairs) {
+      document.getElementById("game-over").style.display = "block";
+      document.getElementById("next-level").style.display = "block";
+    }
+  } else {
+    wrongMatches++;
+    setTimeout(() => {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+      firstCard.textContent = "";
+      secondCard.textContent = "";
+      updateStats();
+    }, 1000);
+  }
+
+  flippedCards = [];
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function updateStats() {
+  document.getElementById(
+    "stats"
+  ).textContent = `Doğru Eşleşme: ${totalCorrectMatches}, Yanlış Eşleşme: ${wrongMatches}, Skor: ${score}`;
+}
+
+function nextLevel() {
+  level++;
+  if (level > maxLevel) {
+    alert("Tebrikler! Oyunu Kazandınız! Skorunuz: " + score);
+    level = 1;
+    score = 0;
+    totalCorrectMatches = 0;
+    wrongMatches = 0;
+  }
+  startGame();
+}
+
+function restartLevel() {
+  startGame();
+}
+// Return to Main Menu function
+function goBackToCategory() {
+  // Hide playground
+  document.querySelector(".game-container").style.display = "none"; // Show category selection page
+  document.querySelector(".category-selection").style.display = "block"; // Resetting game state
+
+  resetGame();
+}
+
+// Game reset function (for restart)
+function resetGame() {
+  flippedCards = [];
+  matchedCards = 0;
+  document.getElementById("level").textContent = level;
+  document.getElementById("game-over").style.display = "none";
+  document.getElementById("next-level").style.display = "none";
+  totalPairs = level + 3;
+  totalCards = totalPairs * 2;
+
+  totalCorrectMatches = 0;
+  wrongMatches = 0;
+  score = 0;
+}
+
+function restartLevel() {
+  level = 1; // Will go back to level 1
+  startGame(); // start game
+
+}
+// When you click on the repeat level button
+function restartLevel() {
+  level = 1; // Level will be reset
+  startGame(); // The game will start from the beginning
+}
+
+// When the level increases
+function nextLevel() {
+  level++; // Level up
+  if (level > maxLevel) {
+    // If the upper limit of the level is reached
+    alert("Tebrikler! Oyunu Kazandınız! Skorunuz: " + score);
+    level = 1; // Reset level
+    score = 0; // Reset score
+    totalCorrectMatches = 0; // Reset correct matches
+    wrongMatches = 0; //Reset wrong matches
+  }
+  startGame(); // Start new level
+}
+
+// Game start and start reset
+function startGame() {
+  resetGame(); // The game will reset
+  createCards(); //New cards will be created
+}
+
+// Game reset function
+function resetGame() {
+  flippedCards = []; // Reset cards
+  matchedCards = 0; // Reset matches
+  document.getElementById("level").textContent = level; // level indicator
+  document.getElementById("game-over").style.display = "none"; //Hide game over message
+  document.getElementById("next-level").style.display = "none"; //Hide Next level button 
+  totalPairs = level + 3; //Increase number of matches per level (difficulty will increase)
+  totalCards = totalPairs * 2; // Increase number of cards
+  totalCorrectMatches = 0; // Reset correct matches
+  wrongMatches = 0; // Reset wrong matches
+  score = 0; // Reset score
+}
+
+// Cards creation function
+function createCards() {
+  const cardsContainer = document.getElementById("cards-container");
+  cardsContainer.innerHTML = ""; // Clear old cards
+
+  let shuffledWords = shuffle(
+    categories[selectedCategory].slice(0, totalPairs)
+  ); // Shuffle the cards
+
+  let allWords = [];
+  shuffledWords.forEach((pair) => {
+    allWords.push(pair.english, pair.turkish); // Add both English and Turkish cards
+  });
+
+  allWords = shuffle(allWords); // Shuffle all cards
+
+  allWords.forEach((word) => {
+    const card = createCard(word);
+    cardsContainer.appendChild(card); // Add cards
+  });
+}
