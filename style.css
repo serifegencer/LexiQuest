@@ -17,5 +17,17 @@ body{
 .category-selection p {
     color: #f3f3f3;
 }
-
-
+.categories-container button {
+    font-size:1.2em;
+    padding:15px 30px;
+    margin:10px;
+    background-color: rgb(73, 209, 112);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; 
+    
+}
+.categories-container button:hover{
+    background-color: rgb(110, 230, 144);
+}
