@@ -21,6 +21,7 @@ body{
     font-size:1.2em;
     padding:15px 30px;
     margin:10px;
+    margin-top: 30px;
     background-color: rgb(73, 209, 112);
     color: white;
     border: none;
@@ -31,3 +32,88 @@ body{
 .categories-container button:hover{
     background-color: rgb(110, 230, 144);
 }
+
+.game-container{
+    width: 50%;
+    margin: 100px auto;
+    border: solid 3px rgb(130, 234, 139);
+    background-color: rgb(130, 234, 139);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 8px 8px 5px 16px rgb(164, 250, 171);
+    display: block;
+}
+
+h1 {
+   font-size: 2em;
+   color: #24229f;
+}
+
+.level-info{
+    font-size: 1.2rem;
+    margin: 20px;
+    color: rgb(7, 7, 7);
+}
+
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(5,1fr); /* Default 5 column */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.card{
+    width: 100px;
+    height: 100px;
+    background-color: hsl(244, 66%, 28%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 10px;  
+}
+.card:hover{
+    transform: scale(0.8);
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+}
+
+button:hover {
+ transform: scale(1.2);
+}
+#game-over {
+    font-size: 1.5em;
+     color: rgb(17, 18, 17);
+     display: none;
+}  
+label {
+ color: #f3f3f3;
+}
+.controls button{
+    background-color: rgb(11, 72, 37);
+   color: white;
+}
+@media(max-width:1024px){
+    .game-container{
+        width: 70%; /* Game-container width will decrease on smaller screens */
+    }
+    .cards-container {
+     grid-template-columns: repeat(4, 1fr); /* 4 columns on middle screens */
+     } 
+}
+@media (max-width: 768px) {
+     .game-container {
+     width: 80%; /* Game-container will become even smaller on mobile devices
+    */
+   } 
+    .cards-container {
+     grid-template-columns: repeat(3, 1fr); /* 3 columns on small screens */
+     }
+ }
